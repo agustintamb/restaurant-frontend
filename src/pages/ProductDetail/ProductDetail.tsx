@@ -4,7 +4,7 @@ import productsData from "@/mocks/productsData.json";
 import { IProduct, ICategory } from "@/types";
 import { formatPrice } from "@/utils/helpers";
 import ProductCardComponent from "@/components/ProductCard/ProductCard";
-import Button from "@/components/Button/Button";
+import Button from "@/components/UI/Button/Button";
 import {
   ProductDetailContainer,
   ProductCard,

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import faqData from "@/mocks/faqData.json";
 import carouselData from "@/mocks/carouselData.json";
-import Carousel from "@/components/Carousel/Carousel";
+import Carousel from "@/components/UI/Carousel/Carousel";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import FAQ from "@/components/FAQ/FAQ";
-import Button from "@/components/Button/Button";
+import Button from "@/components/UI/Button/Button";
 import {
   HomeContainer,
   HomeSection,
