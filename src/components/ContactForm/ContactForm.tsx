@@ -129,7 +129,7 @@ const ContactForm = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Escribe tu mensaje aquí"
+            placeholder="Dejanos tu mensaje"
             rows={5}
             required
           />
