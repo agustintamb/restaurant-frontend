@@ -1,0 +1,388 @@
+{
+  "categories": [
+    {
+      "id": "entrantes",
+      "name": "Entrantes"
+    },
+    {
+      "id": "ensaladas",
+      "name": "Ensaladas"
+    },
+    {
+      "id": "platos-principales",
+      "name": "Platos Principales",
+      "subcategories": [
+        {
+          "id": "carnes-rojas",
+          "name": "Carnes Rojas"
+        },
+        {
+          "id": "carnes-blancas",
+          "name": "Carnes Blancas"
+        },
+        {
+          "id": "pescados",
+          "name": "Pescados"
+        }
+      ]
+    },
+    {
+      "id": "pastas",
+      "name": "Pastas"
+    },
+    {
+      "id": "postres",
+      "name": "Postres"
+    },
+    {
+      "id": "bebidas-alcoholicas",
+      "name": "Bebidas Alcohólicas"
+    },
+    {
+      "id": "bebidas-sin-alcohol",
+      "name": "Bebidas sin Alcohol"
+    }
+  ],
+  "products": [
+    {
+      "id": "empanadas-carne",
+      "categoryId": "entrantes",
+      "name": "Empanadas de Carne",
+      "description": "Clásicas empanadas argentinas rellenas de carne picada, cebolla, huevo y aceitunas",
+      "ingredientes": [
+        "Carne picada",
+        "Cebolla",
+        "Huevo duro",
+        "Aceitunas",
+        "Especias"
+      ],
+      "alergenos": ["Gluten", "Huevo"],
+      "precio": 1200,
+      "img": "https://placehold.co/600x400?text=Empanadas+de+Carne"
+    },
+    {
+      "id": "provoleta",
+      "categoryId": "entrantes",
+      "name": "Provoleta",
+      "description": "Queso provolone a la parrilla con orégano y aceite de oliva",
+      "ingredientes": [
+        "Queso provolone",
+        "Orégano",
+        "Aceite de oliva",
+        "Pimienta",
+        "Sal"
+      ],
+      "alergenos": ["Lácteos"],
+      "precio": 1800,
+      "img": "https://placehold.co/600x400?text=Provoleta"
+    },
+    {
+      "id": "matambre-a-la-pizza",
+      "categoryId": "entrantes",
+      "name": "Matambre a la Pizza",
+      "description": "Fetas de matambre cubiertas con salsa de tomate, queso mozzarella y orégano",
+      "ingredientes": [
+        "Matambre",
+        "Salsa de tomate",
+        "Queso mozzarella",
+        "Orégano",
+        "Sal"
+      ],
+      "alergenos": ["Lácteos"],
+      "precio": 2200,
+      "img": "https://placehold.co/600x400?text=Matambre+a+la+Pizza"
+    },
+    {
+      "id": "picada-argentina",
+      "categoryId": "entrantes",
+      "name": "Picada Argentina",
+      "description": "Selección de fiambres, quesos, aceitunas y pan casero",
+      "ingredientes": [
+        "Jamón crudo",
+        "Salamín",
+        "Queso provolone",
+        "Queso azul",
+        "Aceitunas",
+        "Pan casero"
+      ],
+      "alergenos": ["Lácteos", "Gluten"],
+      "precio": 3500,
+      "img": "https://placehold.co/600x400?text=Picada+Argentina"
+    },
+    {
+      "id": "ensalada-criolla",
+      "categoryId": "ensaladas",
+      "name": "Ensalada Criolla",
+      "description": "Ensalada de tomate, cebolla y lechuga con vinagreta de limón",
+      "ingredientes": [
+        "Tomate",
+        "Cebolla",
+        "Lechuga",
+        "Limón",
+        "Aceite de oliva",
+        "Sal"
+      ],
+      "alergenos": [],
+      "precio": 1400,
+      "img": "https://placehold.co/600x400?text=Ensalada+Criolla"
+    },
+    {
+      "id": "ensalada-rusa",
+      "categoryId": "ensaladas",
+      "name": "Ensalada Rusa",
+      "description": "Clásica ensalada de papa, zanahoria y arvejas con mayonesa",
+      "ingredientes": ["Papa", "Zanahoria", "Arvejas", "Mayonesa", "Sal"],
+      "alergenos": ["Huevo"],
+      "precio": 1600,
+      "img": "https://placehold.co/600x400?text=Ensalada+Rusa"
+    },
+    {
+      "id": "tomates-a-la-provenzal",
+      "categoryId": "ensaladas",
+      "name": "Tomates a la Provenzal",
+      "description": "Rodajas de tomate con ajo y perejil",
+      "ingredientes": ["Tomate", "Ajo", "Perejil", "Aceite de oliva", "Sal"],
+      "alergenos": [],
+      "precio": 1400,
+      "img": "https://placehold.co/600x400?text=Tomates+a+la+Provenzal"
+    },
+    {
+      "id": "bife-de-chorizo",
+      "categoryId": "platos-principales",
+      "subcategoryId": "carnes-rojas",
+      "name": "Bife de Chorizo",
+      "description": "Corte de carne vacuna a la parrilla con guarnición a elección",
+      "ingredientes": ["Bife de chorizo", "Sal gruesa"],
+      "alergenos": [],
+      "precio": 4500,
+      "img": "https://placehold.co/600x400?text=Bife+de+Chorizo"
+    },
+    {
+      "id": "milanesa-a-caballo",
+      "categoryId": "platos-principales",
+      "subcategoryId": "carnes-rojas",
+      "name": "Milanesa a Caballo",
+      "description": "Milanesa de ternera con dos huevos fritos por encima y papas fritas",
+      "ingredientes": [
+        "Carne de ternera",
+        "Pan rallado",
+        "Huevos",
+        "Papas",
+        "Sal",
+        "Pimienta"
+      ],
+      "alergenos": ["Gluten", "Huevo"],
+      "precio": 3800,
+      "img": "https://placehold.co/600x400?text=Milanesa+a+Caballo"
+    },
+    {
+      "id": "matambre-a-la-parrilla",
+      "categoryId": "platos-principales",
+      "subcategoryId": "carnes-rojas",
+      "name": "Matambre a la Parrilla",
+      "description": "Matambre de cerdo a la parrilla con chimichurri",
+      "ingredientes": ["Matambre de cerdo", "Chimichurri", "Sal gruesa"],
+      "alergenos": [],
+      "precio": 3500,
+      "img": "https://placehold.co/600x400?text=Matambre+a+la+Parrilla"
+    },
+    {
+      "id": "pollo-a-la-parrilla",
+      "categoryId": "platos-principales",
+      "subcategoryId": "carnes-blancas",
+      "name": "Pollo a la Parrilla",
+      "description": "Medio pollo a la parrilla marinado en limón y hierbas",
+      "ingredientes": [
+        "Pollo",
+        "Limón",
+        "Romero",
+        "Tomillo",
+        "Sal",
+        "Pimienta"
+      ],
+      "alergenos": [],
+      "precio": 3200,
+      "img": "https://placehold.co/600x400?text=Pollo+a+la+Parrilla"
+    },
+    {
+      "id": "suprema-maryland",
+      "categoryId": "platos-principales",
+      "subcategoryId": "carnes-blancas",
+      "name": "Suprema Maryland",
+      "description": "Milanesa de pollo con banana frita, arvejas, maíz y salsa blanca",
+      "ingredientes": [
+        "Pechuga de pollo",
+        "Pan rallado",
+        "Huevo",
+        "Banana",
+        "Arvejas",
+        "Maíz",
+        "Harina",
+        "Leche",
+        "Manteca"
+      ],
+      "alergenos": ["Gluten", "Huevo", "Lácteos"],
+      "precio": 3400,
+      "img": "https://placehold.co/600x400?text=Suprema+Maryland"
+    },
+    {
+      "id": "merluza-a-la-romana",
+      "categoryId": "platos-principales",
+      "subcategoryId": "pescados",
+      "name": "Merluza a la Romana",
+      "description": "Filete de merluza rebozado con limón y perejil",
+      "ingredientes": ["Merluza", "Harina", "Huevo", "Limón", "Perejil", "Sal"],
+      "alergenos": ["Gluten", "Huevo", "Pescado"],
+      "precio": 3600,
+      "img": "https://placehold.co/600x400?text=Merluza+a+la+Romana"
+    },
+    {
+      "id": "salmon-grillado",
+      "categoryId": "platos-principales",
+      "subcategoryId": "pescados",
+      "name": "Salmón Grillado",
+      "description": "Filete de salmón grillado con salsa de eneldo y limón",
+      "ingredientes": ["Salmón", "Eneldo", "Limón", "Crema", "Sal", "Pimienta"],
+      "alergenos": ["Pescado", "Lácteos"],
+      "precio": 4200,
+      "img": "https://placehold.co/600x400?text=Salmon+Grillado"
+    },
+    {
+      "id": "sorrentinos-jamon-queso",
+      "categoryId": "pastas",
+      "name": "Sorrentinos de Jamón y Queso",
+      "description": "Pasta rellena de jamón y queso con salsa a elección",
+      "ingredientes": [
+        "Harina",
+        "Huevo",
+        "Jamón",
+        "Queso mozzarella",
+        "Queso parmesano"
+      ],
+      "alergenos": ["Gluten", "Huevo", "Lácteos"],
+      "precio": 2800,
+      "img": "https://placehold.co/600x400?text=Sorrentinos+de+Jamon+y+Queso"
+    },
+    {
+      "id": "noquis-caseros",
+      "categoryId": "pastas",
+      "name": "Ñoquis Caseros",
+      "description": "Ñoquis de papa caseros con salsa fileto y albahaca",
+      "ingredientes": [
+        "Papa",
+        "Harina",
+        "Huevo",
+        "Tomate",
+        "Albahaca",
+        "Queso parmesano"
+      ],
+      "alergenos": ["Gluten", "Huevo", "Lácteos"],
+      "precio": 2600,
+      "img": "https://placehold.co/600x400?text=Noquis+Caseros"
+    },
+    {
+      "id": "tallarines-caseros",
+      "categoryId": "pastas",
+      "name": "Tallarines Caseros",
+      "description": "Tallarines al huevo con salsa a elección",
+      "ingredientes": ["Harina", "Huevo", "Sal"],
+      "alergenos": ["Gluten", "Huevo"],
+      "precio": 2500,
+      "img": "https://placehold.co/600x400?text=Tallarines+Caseros"
+    },
+    {
+      "id": "flan-casero",
+      "categoryId": "postres",
+      "name": "Flan Casero",
+      "description": "Flan tradicional con dulce de leche y crema",
+      "ingredientes": ["Huevo", "Leche", "Azúcar", "Dulce de leche", "Crema"],
+      "alergenos": ["Huevo", "Lácteos"],
+      "precio": 1400,
+      "img": "https://placehold.co/600x400?text=Flan+Casero"
+    },
+    {
+      "id": "panqueques-dulce-leche",
+      "categoryId": "postres",
+      "name": "Panqueques con Dulce de Leche",
+      "description": "Tiernos panqueques rellenos de dulce de leche",
+      "ingredientes": ["Harina", "Huevo", "Leche", "Dulce de leche"],
+      "alergenos": ["Gluten", "Huevo", "Lácteos"],
+      "precio": 1600,
+      "img": "https://placehold.co/600x400?text=Panqueques+con+Dulce+de+Leche"
+    },
+    {
+      "id": "helado-artesanal",
+      "categoryId": "postres",
+      "name": "Helado Artesanal",
+      "description": "Selección de helados artesanales (3 bochas)",
+      "ingredientes": ["Crema", "Leche", "Azúcar", "Saborizantes naturales"],
+      "alergenos": ["Lácteos"],
+      "precio": 1800,
+      "img": "https://placehold.co/600x400?text=Helado+Artesanal"
+    },
+    {
+      "id": "vino-malbec",
+      "categoryId": "bebidas-alcoholicas",
+      "name": "Vino Malbec",
+      "description": "Botella de vino Malbec de Mendoza",
+      "ingredientes": ["Uva Malbec"],
+      "alergenos": ["Sulfitos"],
+      "precio": 3800,
+      "img": "https://placehold.co/600x400?text=Vino+Malbec"
+    },
+    {
+      "id": "vino-cabernet",
+      "categoryId": "bebidas-alcoholicas",
+      "name": "Vino Cabernet Sauvignon",
+      "description": "Botella de vino Cabernet Sauvignon premium",
+      "ingredientes": ["Uva Cabernet Sauvignon"],
+      "alergenos": ["Sulfitos"],
+      "precio": 4200,
+      "img": "https://placehold.co/600x400?text=Vino+Cabernet+Sauvignon"
+    },
+    {
+      "id": "cerveza-artesanal",
+      "categoryId": "bebidas-alcoholicas",
+      "name": "Cerveza Artesanal",
+      "description": "Pinta de cerveza artesanal local",
+      "ingredientes": ["Agua", "Malta", "Lúpulo", "Levadura"],
+      "alergenos": ["Gluten"],
+      "precio": 1200,
+      "img": "https://placehold.co/600x400?text=Cerveza+Artesanal"
+    },
+    {
+      "id": "agua-mineral",
+      "categoryId": "bebidas-sin-alcohol",
+      "name": "Agua Mineral",
+      "description": "Botella de agua mineral con o sin gas",
+      "ingredientes": ["Agua mineral"],
+      "alergenos": [],
+      "precio": 850,
+      "img": "https://placehold.co/600x400?text=Agua+Mineral"
+    },
+    {
+      "id": "gaseosa",
+      "categoryId": "bebidas-sin-alcohol",
+      "name": "Gaseosa",
+      "description": "Vaso de gaseosa a elección con hielo",
+      "ingredientes": [
+        "Agua carbonatada",
+        "Jarabe de fructosa",
+        "Saborizantes"
+      ],
+      "alergenos": [],
+      "precio": 900,
+      "img": "https://placehold.co/600x400?text=Gaseosa"
+    },
+    {
+      "id": "limonada-casera",
+      "categoryId": "bebidas-sin-alcohol",
+      "name": "Limonada Casera",
+      "description": "Limonada casera con menta y jengibre",
+      "ingredientes": ["Limón", "Azúcar", "Menta", "Jengibre", "Agua"],
+      "alergenos": [],
+      "precio": 1100,
+      "img": "https://placehold.co/600x400?text=Limonada+Casera"
+    }
+  ]
+}

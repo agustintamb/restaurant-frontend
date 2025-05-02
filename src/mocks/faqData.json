@@ -1,0 +1,44 @@
+{
+  "faqs": [
+    {
+      "id": "vegetarian-options",
+      "question": "¿Cuentan con opciones vegetarianas?",
+      "answer": "Sí, contamos con varias opciones vegetarianas en nuestra carta. Tenemos ensaladas frescas, platos de verduras a la parrilla y pastas caseras con salsas vegetarianas. Consultá con nuestro personal por las opciones disponibles del día."
+    },
+    {
+      "id": "reservations",
+      "question": "¿Es necesario reservar mesa?",
+      "answer": "Recomendamos reservar, especialmente para fines de semana y días festivos. Podés hacer tu reserva llamando al (011) 4123-4567 o a través de nuestro formulario de contacto en la web."
+    },
+    {
+      "id": "daily-menu",
+      "question": "¿Tienen menú del día?",
+      "answer": "Sí, contamos con menú del día de martes a viernes al mediodía. Incluye entrada, plato principal, postre y bebida a un precio especial. Podés consultar nuestro menú diario en nuestras redes sociales o al llegar al restaurante."
+    },
+    {
+      "id": "private-events",
+      "question": "¿Aceptan eventos y celebraciones?",
+      "answer": "Sí, organizamos eventos privados y celebraciones. Contamos con un salón especial para grupos y ofrecemos menús personalizados. Para más información, por favor contactanos con anticipación para verificar disponibilidad y discutir detalles."
+    },
+    {
+      "id": "allergies",
+      "question": "¿Tienen opciones para personas con alergias o intolerancias?",
+      "answer": "Sí, adaptamos nuestros platos para personas con alergias o intolerancias. Todos nuestros platos en el menú indican los alérgenos que contienen. Por favor, informanos sobre tus restricciones alimentarias al momento de hacer tu reserva o al realizar tu pedido."
+    },
+    {
+      "id": "wifi",
+      "question": "¿Tienen WiFi gratuito?",
+      "answer": "Sí, ofrecemos WiFi gratuito para todos nuestros clientes. Podés solicitar la contraseña a cualquier miembro de nuestro personal."
+    },
+    {
+      "id": "parking",
+      "question": "¿Tienen estacionamiento?",
+      "answer": "No contamos con estacionamiento propio."
+    },
+    {
+      "id": "payment-methods",
+      "question": "¿Qué métodos de pago aceptan?",
+      "answer": "Aceptamos efectivo, todas las tarjetas de crédito y débito, y pagos mediante QR con MODO o Mercado Pago."
+    }
+  ]
+}

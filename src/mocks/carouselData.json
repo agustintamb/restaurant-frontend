@@ -1,0 +1,34 @@
+{
+  "slides": [
+    {
+      "id": "main",
+      "image": "src/assets/images/restaurant.jpg",
+      "heading": "Bodegón Argentino",
+      "subheading": "Sabores auténticos de nuestra tierra en cada plato"
+    },
+    {
+      "id": "meat",
+      "image": "src/assets/images/meat.jpg",
+      "heading": "Las Mejores Carnes",
+      "subheading": "Cortes seleccionados preparados a la parrilla por maestros asadores"
+    },
+    {
+      "id": "atmosphere",
+      "image": "src/assets/images/place.jpg",
+      "heading": "Ambiente Acogedor",
+      "subheading": "Un espacio pensado para compartir momentos inolvidables"
+    },
+    {
+      "id": "pasta",
+      "image": "src/assets/images/pasta.jpg",
+      "heading": "Pastas Caseras",
+      "subheading": "Elaboradas artesanalmente siguiendo recetas tradicionales"
+    },
+    {
+      "id": "wine",
+      "image": "src/assets/images/wine.jpg",
+      "heading": "Vinos Argentinos",
+      "subheading": "Selección de los mejores vinos de nuestras regiones vinícolas"
+    }
+  ]
+}
