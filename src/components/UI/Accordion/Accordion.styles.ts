@@ -74,6 +74,7 @@ export const AccordionHeader = styled.div`
   @media (max-width: 768px) {
     font-size: 1rem;
     padding: 1rem;
+    gap: 0.5rem;
   }
 `;
 
@@ -99,6 +100,7 @@ export const AccordionIcon = styled.span<AccordionIconProps>`
   align-items: center;
   width: 24px;
   height: 24px;
+  min-width: 24px;
   background-color: ${(props) =>
     props.expanded ? "var(--color-secondary)" : "var(--color-primary)"};
   color: var(--color-paper);
