@@ -30,12 +30,14 @@ const ProductCard = ({
 
   return (
     <ProductCardContainer onClick={handleClick}>
-      <ProductImage>
+      <ProductImage $small={small}>
         <img src={product.img} alt={product.name} />
       </ProductImage>
       <ProductContent>
         <ProductName $small={small}>{product.name}</ProductName>
-        <ProductDescription>{product.description}</ProductDescription>
+        <ProductDescription $small={small}>
+          {product.description}
+        </ProductDescription>
 
         {!small && (
           <>

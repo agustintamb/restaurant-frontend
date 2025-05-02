@@ -56,7 +56,7 @@ export const FooterTitle = styled.h3`
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #d7b377;
+  color: var(--mui-palette-secondary-main);
   position: relative;
 
   &:after {
@@ -66,7 +66,16 @@ export const FooterTitle = styled.h3`
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: #d7b377;
+    background-color: var(--mui-palette-secondary-main);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+    text-align: center;
+
+    &:after {
+      display: none;
+    }
   }
 `;
 
@@ -79,12 +88,21 @@ export const FooterText = styled.p`
     font-weight: 600;
     color: #e9d3a8;
   }
+
+  @media (max-width: 768px) {
+    &:nth-child(2) {
+      display: none;
+    }
+  }
 `;
 
 export const SocialIcons = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const SocialIcon = styled.a`

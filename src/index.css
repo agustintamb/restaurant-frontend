@@ -41,6 +41,6 @@ body {
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .main-content {
-    padding: 1rem;
+    padding: 0 0.5rem 2rem 0.5rem;
   }
 }

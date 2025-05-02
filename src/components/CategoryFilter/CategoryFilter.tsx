@@ -121,7 +121,7 @@ const CategoryFilter = ({
         ref={mobileFilterButtonRef}
         onClick={toggleMobileFilter}
       >
-        Buscar por categoría
+        Filtrar por categoría
       </MobileFilterButton>
 
       <MobileFilterContainer open={mobileFilterOpen}>

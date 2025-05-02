@@ -8,13 +8,16 @@ export const ProductDetailContainer = styled.div`
   animation: ${fadeIn} 0.8s ease-out;
 
   @media (max-width: 768px) {
-    padding: 2rem 1.5rem;
+    padding: 0rem 1.5rem;
   }
 `;
 
 export const BackButton = styled.div`
   margin-bottom: 2rem;
   animation: ${slideIn} 0.5s ease-out;
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const ProductCard = styled.div`
@@ -28,6 +31,7 @@ export const ProductCard = styled.div`
 
   @media (max-width: 992px) {
     flex-direction: column;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -62,6 +66,9 @@ export const CategoryLabel = styled.div`
   color: var(--mui-palette-primary-light);
   margin-bottom: 0.5rem;
   font-weight: 500;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const ProductName = styled.h1`
@@ -72,7 +79,8 @@ export const ProductName = styled.h1`
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -84,6 +92,7 @@ export const ProductDescription = styled.p`
 
   @media (max-width: 768px) {
     font-size: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -96,6 +105,9 @@ export const SectionTitle = styled.h3`
 
 export const ProductIngredients = styled.div`
   margin-bottom: 1.5rem;
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const IngredientsList = styled.ul`
@@ -122,6 +134,10 @@ export const ProductAlergenos = styled.div`
     flex-wrap: wrap;
     gap: 0.5rem;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const AlergenoTag = styled.span`
@@ -141,11 +157,17 @@ export const ProductPrice = styled.div`
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(141, 73, 37, 0.1);
+
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 2rem;
+    padding-top: 0.5rem;
+  }
 `;
 
 export const RelatedProductsSection = styled.div`
   margin-top: 4rem;
-
   h3 {
     font-family: "Playfair Display", serif;
     font-size: 1.8rem;
@@ -160,9 +182,24 @@ export const RelatedProductsSection = styled.div`
       position: absolute;
       width: 50%;
       height: 2px;
-      background-color: #d7b377;
+      background-color: var(--mui-palette-secondary-main);
       bottom: -8px;
       left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      font-size: 1.4rem;
+      
+      &:after {
+        width: 100%;
+      }
     }
   }
 `;
@@ -175,10 +212,5 @@ export const RelatedProductsGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
   }
 `;

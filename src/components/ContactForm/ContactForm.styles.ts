@@ -29,6 +29,9 @@ export const FormSubtitle = styled.p`
   color: var(--mui-palette-text-secondary);
   text-align: center;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const FormGroup = styled.div`

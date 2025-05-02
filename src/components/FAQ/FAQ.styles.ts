@@ -37,7 +37,7 @@ export const FAQTitle = styled.h2`
     position: absolute;
     width: 80px;
     height: 3px;
-    background-color: #d7b377;
+    background-color: var(--mui-palette-secondary-main);
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
@@ -59,7 +59,7 @@ export const FAQItem = styled.div<FAQItemProps>`
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid
-    ${(props) => (props.active ? "#D7B377" : "rgba(0, 0, 0, 0.05)")};
+    ${(props) => (props.active ? "var(--mui-palette-secondary-main)" : "rgba(0, 0, 0, 0.05)")};
   box-shadow: ${(props) =>
     props.active
       ? "0 4px 15px rgba(0, 0, 0, 0.1)"
@@ -111,7 +111,7 @@ export const FAQIcon = styled.span<FAQIconProps>`
   width: 24px;
   height: 24px;
   min-width: 24px;
-  background-color: ${(props) => (props.active ? "#D7B377" : "var(--mui-palette-primary-main)")};
+  background-color: ${(props) => (props.active ? "var(--mui-palette-secondary-main)" : "var(--mui-palette-primary-main)")};
   color: #fff;
   border-radius: 50%;
   font-size: 1rem;

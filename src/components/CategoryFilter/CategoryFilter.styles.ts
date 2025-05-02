@@ -32,7 +32,7 @@ export const FilterTitle = styled.h3`
     position: absolute;
     width: 60%;
     height: 2px;
-    background-color: #d7b377;
+    background-color: var(--mui-palette-secondary-main);
     bottom: -5px;
     left: 0;
   }

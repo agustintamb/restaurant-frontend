@@ -27,7 +27,7 @@ export const ProductCardContainer = styled.div`
   }
 `;
 
-export const ProductImage = styled.div`
+export const ProductImage = styled.div<{ $small?: boolean }>`
   width: 100%;
   height: 200px;
   overflow: hidden;
@@ -42,6 +42,10 @@ export const ProductImage = styled.div`
   ${ProductCardContainer}:hover & img {
     transform: scale(1.05);
   }
+
+  @media (max-width: 768px) {
+    height: ${({ $small }) => ($small ? "150px" : "200px")};
+  }
 `;
 
 export const ProductContent = styled.div`
@@ -53,20 +57,31 @@ export const ProductContent = styled.div`
 
 export const ProductName = styled.h3<{ $small?: boolean }>`
   font-family: "Playfair Display", serif;
-  font-size: ${({ $small }) => ($small ? "1.3rem!important" : "1.4rem")};
+  font-size: ${({ $small }) => ($small ? "1.7rem!important" : "1.4rem")};
   font-weight: 600;
   color: #6d3014;
   margin-bottom: 0.5rem;
   min-height: ${({ $small }) => ($small ? "40px" : "64px")};
-  text-align: center;
+  @media (max-width: 768px) {
+    min-height: 0px;
+    margin-bottom: ${({ $small }) => ($small ? "0.5rem!important" : "1rem")};
+    font-size: ${({ $small }) => ($small ? "1.2rem!important" : "1.2rem")};
+    &:after {
+      display: ${({ $small }) => ($small ? "none" : "block")};
+    }
+  }
 `;
 
-export const ProductDescription = styled.p`
+export const ProductDescription = styled.p<{ $small?: boolean }>`
   font-size: 0.95rem;
   color: var(--mui-palette-text-secondary);
   line-height: 1.4;
   margin-bottom: 0.75rem;
   min-height: 60px;
+  @media (max-width: 768px) {
+    margin-bottom: 0rem;
+    min-height: 52px;
+  }
 `;
 
 export const ProductIngredients = styled.div`
@@ -77,6 +92,9 @@ export const ProductIngredients = styled.div`
     color: var(--mui-palette-primary-main);
     font-weight: 600;
     margin-right: 0.25rem;
+  }
+  @media (max-width: 768px) {
+    min-height: 0px;
   }
 `;
 
@@ -112,4 +130,7 @@ export const ProductPrice = styled.div`
   margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(141, 73, 37, 0.1);
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
