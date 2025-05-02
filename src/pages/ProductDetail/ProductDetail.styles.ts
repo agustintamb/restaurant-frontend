@@ -63,7 +63,7 @@ export const ProductInfo = styled.div`
 export const CategoryLabel = styled.div`
   display: inline-block;
   font-size: 0.9rem;
-  color: var(--mui-palette-primary-light);
+  color: var(--color-primary-light);
   margin-bottom: 0.5rem;
   font-weight: 500;
   @media (max-width: 768px) {
@@ -72,10 +72,10 @@ export const CategoryLabel = styled.div`
 `;
 
 export const ProductName = styled.h1`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
@@ -87,7 +87,7 @@ export const ProductName = styled.h1`
 export const ProductDescription = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
   margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
@@ -99,7 +99,7 @@ export const ProductDescription = styled.p`
 export const SectionTitle = styled.h3`
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-bottom: 0.75rem;
 `;
 
@@ -122,7 +122,7 @@ export const IngredientsList = styled.ul`
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     font-size: 0.9rem;
-    color: var(--mui-palette-text-secondary);
+    color: var(--color-text-secondary);
   }
 `;
 
@@ -142,7 +142,7 @@ export const ProductAlergenos = styled.div`
 
 export const AlergenoTag = styled.span`
   background-color: rgba(141, 73, 37, 0.1);
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
   font-size: 0.9rem;
@@ -150,10 +150,10 @@ export const AlergenoTag = styled.span`
 `;
 
 export const ProductPrice = styled.div`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(141, 73, 37, 0.1);
@@ -169,10 +169,10 @@ export const ProductPrice = styled.div`
 export const RelatedProductsSection = styled.div`
   margin-top: 4rem;
   h3 {
-    font-family: "Playfair Display", serif;
+    font-family: --font-family-secondary;
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--mui-palette-primary-main);
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
     position: relative;
     display: inline-block;
@@ -182,7 +182,7 @@ export const RelatedProductsSection = styled.div`
       position: absolute;
       width: 50%;
       height: 2px;
-      background-color: var(--mui-palette-secondary-main);
+      background-color: var(--color-secondary);
       bottom: -8px;
       left: 0;
     }

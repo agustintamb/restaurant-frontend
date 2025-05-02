@@ -26,9 +26,9 @@ const getButtonVariant = (variant: ButtonVariant) => {
   switch (variant) {
     case "secondary":
       return css`
-        background-color: var(--mui-palette-secondary-main);
+        background-color: var(--color-secondary);
         color: #6d3014;
-        border: 1px solid var(--mui-palette-secondary-main);
+        border: 1px solid var(--color-secondary);
 
         &:hover {
           background-color: #e9d3a8;
@@ -43,8 +43,8 @@ const getButtonVariant = (variant: ButtonVariant) => {
     case "outline":
       return css`
         background-color: transparent;
-        color: var(--mui-palette-primary-main);
-        border: 1px solid var(--mui-palette-primary-main);
+        color: var(--color-primary);
+        border: 1px solid var(--color-primary);
 
         &:hover {
           background-color: rgba(141, 73, 37, 0.05);
@@ -57,7 +57,7 @@ const getButtonVariant = (variant: ButtonVariant) => {
     case "text":
       return css`
         background-color: transparent;
-        color: var(--mui-palette-primary-main);
+        color: var(--color-primary);
         border: none;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
@@ -73,13 +73,13 @@ const getButtonVariant = (variant: ButtonVariant) => {
     case "primary":
     default:
       return css`
-        background-color: var(--mui-palette-primary-main);
-        color: var(--mui-palette-background-default);
-        border: 1px solid var(--mui-palette-primary-main);
+        background-color: var(--color-primary);
+        color: var(--color-background);
+        border: 1px solid var(--color-primary);
 
         &:hover {
-          background-color: var(--mui-palette-primary-light);
-          border-color: var(--mui-palette-primary-light);
+          background-color: var(--color-primary-light);
+          border-color: var(--color-primary-light);
         }
 
         &:active {
@@ -96,7 +96,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-family: "Lora", serif;
+  font-family: --font-family-primary;
   font-weight: 500;
   border-radius: 8px;
   cursor: pointer;

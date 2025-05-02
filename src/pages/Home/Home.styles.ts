@@ -54,10 +54,10 @@ export const AboutContent = styled.div`
 `;
 
 export const AboutHeading = styled.h3`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
   position: relative;
 
@@ -66,7 +66,7 @@ export const AboutHeading = styled.h3`
     position: absolute;
     width: 60px;
     height: 2px;
-    background-color: var(--mui-palette-secondary-main);
+    background-color: var(--color-secondary);
     bottom: -10px;
     left: 0;
   }
@@ -85,7 +85,7 @@ export const AboutHeading = styled.h3`
 export const AboutText = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
   margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
@@ -94,7 +94,7 @@ export const AboutText = styled.p`
 `;
 
 export const CTASection = styled.section`
-  background-color: var(--mui-palette-primary-main);
+  background-color: var(--color-primary);
   padding: 4rem 2rem;
   text-align: center;
   animation: ${fadeIn} 0.8s ease-out;
@@ -110,10 +110,10 @@ export const CTAContent = styled.div`
 `;
 
 export const CTAHeading = styled.h2`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--mui-palette-background-default);
+  color: var(--color-background);
   margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
@@ -144,7 +144,7 @@ export const CTAButtons = styled.div`
 
 export const ContactSection = styled.section`
   padding: 3rem 2rem;
-  background-color: var(--mui-palette-background-default);
+  background-color: var(--color-background);
 
   @media (max-width: 768px) {
     padding: 1rem 0rem;

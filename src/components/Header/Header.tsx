@@ -10,11 +10,10 @@ import {
   MobileMenu,
 } from "./Header.styles";
 
-// Interfaz para las secciones de la página
 interface Section {
   id: string;
   name: string;
-  path: string; // Ruta principal donde se encuentra la sección
+  path: string;
 }
 
 const Header = () => {
@@ -27,7 +26,6 @@ const Header = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLDivElement>(null);
 
-  // Definir las secciones disponibles en el Home
   const sections: Section[] = [
     { id: "inicio", name: "Inicio", path: "/" },
     { id: "nosotros", name: "Nosotros", path: "/" },
@@ -48,9 +46,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      if (isScrolled !== scrolled) setScrolled(isScrolled);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -100,9 +96,7 @@ const Header = () => {
   };
 
   const isActive = (path: string) => {
-    if (path === "/") {
-      return location.pathname === "/";
-    }
+    if (path === "/") return location.pathname === "/";
     return location.pathname.includes(path);
   };
 

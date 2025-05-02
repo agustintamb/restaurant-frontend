@@ -24,10 +24,10 @@ export const FAQContainer = styled.section`
 `;
 
 export const FAQTitle = styled.h2`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
@@ -37,7 +37,7 @@ export const FAQTitle = styled.h2`
     position: absolute;
     width: 80px;
     height: 3px;
-    background-color: var(--mui-palette-secondary-main);
+    background-color: var(--color-secondary);
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
@@ -59,7 +59,7 @@ export const FAQItem = styled.div<FAQItemProps>`
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid
-    ${(props) => (props.active ? "var(--mui-palette-secondary-main)" : "rgba(0, 0, 0, 0.05)")};
+    ${(props) => (props.active ? "var(--color-secondary)" : "rgba(0, 0, 0, 0.05)")};
   box-shadow: ${(props) =>
     props.active
       ? "0 4px 15px rgba(0, 0, 0, 0.1)"
@@ -91,7 +91,7 @@ export const FAQQuestion = styled.div`
 export const FAQAnswer = styled.div<FAQAnswerProps>`
   padding: ${(props) => (props.active ? "0 1.25rem 1.25rem" : "0 1.25rem")};
   font-size: 1rem;
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
   line-height: 1.6;
   max-height: ${(props) => (props.active ? "500px" : "0")};
   opacity: ${(props) => (props.active ? 1 : 0)};
@@ -111,7 +111,7 @@ export const FAQIcon = styled.span<FAQIconProps>`
   width: 24px;
   height: 24px;
   min-width: 24px;
-  background-color: ${(props) => (props.active ? "var(--mui-palette-secondary-main)" : "var(--mui-palette-primary-main)")};
+  background-color: ${(props) => (props.active ? "var(--color-secondary)" : "var(--color-primary)")};
   color: #fff;
   border-radius: 50%;
   font-size: 1rem;

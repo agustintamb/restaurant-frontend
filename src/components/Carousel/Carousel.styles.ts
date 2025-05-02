@@ -82,12 +82,12 @@ export const CarouselContent = styled.div`
   z-index: 1;
   max-width: 800px;
   padding: 0 2rem;
-  color: var(--mui-palette-background-default);
+  color: var(--color-background);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 export const CarouselHeading = styled.h1`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -128,13 +128,13 @@ export const CarouselDot = styled.div<CarouselDotProps>`
   height: 12px;
   border-radius: 50%;
   background-color: ${(props) =>
-    props.active ? "var(--mui-palette-background-default)" : "rgba(255, 248, 231, 0.5)"};
+    props.active ? "var(--color-background)" : "rgba(255, 248, 231, 0.5)"};
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
     background-color: ${(props) =>
-      props.active ? "var(--mui-palette-background-default)" : "rgba(255, 248, 231, 0.8)"};
+      props.active ? "var(--color-background)" : "rgba(255, 248, 231, 0.8)"};
   }
 `;
 
@@ -144,7 +144,7 @@ export const CarouselArrow = styled.button<CarouselArrowProps>`
   transform: translateY(-50%);
   ${(props) => (props.position === "left" ? "left: 20px;" : "right: 20px;")}
   background-color: rgba(0, 0, 0, 0.3);
-  color: var(--mui-palette-background-default);
+  color: var(--color-background);
   border: none;
   width: 40px;
   height: 40px;

@@ -18,7 +18,7 @@ export const HeaderContainer = styled.header<HeaderContainerProps>`
   justify-content: space-between;
   align-items: center;
   padding: ${({ scrolled }) => (scrolled ? "0.5rem 2rem" : "1rem 2rem")};
-  background-color: ${({ scrolled }) => (scrolled ? "var(--mui-palette-background-default)" : "var(--mui-palette-background-default)")};
+  background-color: ${({ scrolled }) => (scrolled ? "var(--color-background)" : "var(--color-background)")};
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -56,10 +56,10 @@ export const NavLinks = styled.nav`
 `;
 
 export const NavLink = styled.a<NavLinkProps>`
-  font-family: "Lora", serif;
+  font-family: --font-family-primary;
   font-size: 1.1rem;
   font-weight: ${({ active }) => (active ? "600" : "400")};
-  color: ${({ active }) => (active ? "var(--mui-palette-primary-main)" : "#333")};
+  color: ${({ active }) => (active ? "var(--color-primary)" : "#333")};
   cursor: pointer;
   text-decoration: none;
   position: relative;
@@ -72,12 +72,12 @@ export const NavLink = styled.a<NavLinkProps>`
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: var(--mui-palette-primary-main);
+    background-color: var(--color-primary);
     transition: width 0.3s ease;
   }
 
   &:hover {
-    color: var(--mui-palette-primary-main);
+    color: var(--color-primary);
 
     &:after {
       width: 100%;
@@ -100,7 +100,7 @@ export const MobileMenuButton = styled.div`
   span {
     height: 3px;
     width: 100%;
-    background-color: var(--mui-palette-primary-main);
+    background-color: var(--color-primary);
     border-radius: 10px;
     transition: all 0.3s ease;
   }
@@ -116,7 +116,7 @@ export const MobileMenu = styled.div<MobileMenuProps>`
   width: 70%;
   max-width: 300px;
   height: 100vh;
-  background-color: var(--mui-palette-background-default);
+  background-color: var(--color-background);
   padding: 5rem 2rem;
   z-index: 999;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};

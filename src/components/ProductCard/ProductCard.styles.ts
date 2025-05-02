@@ -19,7 +19,7 @@ export const ProductCardContainer = styled.div`
   }
 
   strong {
-    color: var(--mui-palette-primary-main);
+    color: var(--color-primary);
     font-weight: 600;
     margin-right: 0.25rem;
     display: block;
@@ -56,12 +56,12 @@ export const ProductContent = styled.div`
 `;
 
 export const ProductName = styled.h3<{ $small?: boolean }>`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: ${({ $small }) => ($small ? "1.7rem!important" : "1.4rem")};
   font-weight: 600;
   color: #6d3014;
   margin-bottom: 0.5rem;
-  min-height: ${({ $small }) => ($small ? "40px" : "64px")};
+  min-height: ${({ $small }) => ($small ? "60px" : "64px")};
   @media (max-width: 768px) {
     min-height: 0px;
     margin-bottom: ${({ $small }) => ($small ? "0.5rem!important" : "1rem")};
@@ -74,7 +74,7 @@ export const ProductName = styled.h3<{ $small?: boolean }>`
 
 export const ProductDescription = styled.p<{ $small?: boolean }>`
   font-size: 0.95rem;
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
   line-height: 1.4;
   margin-bottom: 0.75rem;
   min-height: 60px;
@@ -89,7 +89,7 @@ export const ProductIngredients = styled.div`
   margin-bottom: 0.75rem;
   min-height: 64px;
   strong {
-    color: var(--mui-palette-primary-main);
+    color: var(--color-primary);
     font-weight: 600;
     margin-right: 0.25rem;
   }
@@ -99,7 +99,7 @@ export const ProductIngredients = styled.div`
 `;
 
 export const IngredientsList = styled.span`
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
 `;
 
 export const ProductAlergenos = styled.div`
@@ -115,18 +115,18 @@ export const ProductAlergenos = styled.div`
 
 export const AlergenoTag = styled.span`
   background-color: rgba(141, 73, 37, 0.1);
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
 `;
 
 export const ProductPrice = styled.div`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 1.5rem;
   text-align: center;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(141, 73, 37, 0.1);

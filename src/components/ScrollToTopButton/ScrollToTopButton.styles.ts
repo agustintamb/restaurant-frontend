@@ -11,8 +11,8 @@ export const ScrollButton = styled.button<ScrollButtonProps>`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--mui-palette-primary-main);
-  color: var(--mui-palette-background-default);
+  background-color: var(--color-primary);
+  color: var(--color-background);
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -26,7 +26,7 @@ export const ScrollButton = styled.button<ScrollButtonProps>`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background-color: var(--mui-palette-primary-dark);
+    background-color: var(--color-primary-dark);
     transform: translateY(-5px);
   }
 

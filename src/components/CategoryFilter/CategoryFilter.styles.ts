@@ -20,9 +20,9 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterTitle = styled.h3`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 1.3rem;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
@@ -32,7 +32,7 @@ export const FilterTitle = styled.h3`
     position: absolute;
     width: 60%;
     height: 2px;
-    background-color: var(--mui-palette-secondary-main);
+    background-color: var(--color-secondary);
     bottom: -5px;
     left: 0;
   }
@@ -60,17 +60,17 @@ export const CategoryChip = styled.div<CategoryChipProps>`
     selected
       ? isSubcategory
         ? "#E9D3A8"
-        : "var(--mui-palette-primary-main)"
+        : "var(--color-primary)"
       : "#FFF"};
   color: ${({ selected, isSubcategory }) =>
     selected
       ? isSubcategory
         ? "#6D3014"
         : "#FFF"
-      : "var(--mui-palette-primary-main)"};
+      : "var(--color-primary)"};
   border: 1px solid
     ${({ isSubcategory }) =>
-      isSubcategory ? "#E9D3A8" : "var(--mui-palette-primary-main)"};
+      isSubcategory ? "#E9D3A8" : "var(--color-primary)"};
   border-radius: 50px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -81,7 +81,7 @@ export const CategoryChip = styled.div<CategoryChipProps>`
       selected
         ? isSubcategory
           ? "#E9D3A8"
-          : "var(--mui-palette-primary-main)"
+          : "var(--color-primary)"
         : isSubcategory
         ? "rgba(233, 211, 168, 0.1)"
         : "rgba(141, 73, 37, 0.1)"};
@@ -98,11 +98,11 @@ export const SubcategoryChips = styled.div`
 export const MobileFilterButton = styled.button`
   display: none;
   padding: 0.8rem 1.5rem;
-  background-color: var(--mui-palette-primary-main);
+  background-color: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-family: "Lora", serif;
+  font-family: --font-family-primary;
   font-size: 1rem;
   cursor: pointer;
   margin-bottom: 1.5rem;
@@ -136,7 +136,7 @@ export const MobileFilterContent = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: var(--mui-palette-background-default);
+  background-color: var(--color-background);
   padding: 2rem;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -153,7 +153,7 @@ export const MobileFilterClose = styled.button`
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   cursor: pointer;
   width: 30px;
   height: 30px;

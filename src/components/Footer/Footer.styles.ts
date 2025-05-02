@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { fadeIn } from "@/utils/animations";
 
 export const FooterContainer = styled.footer`
-  background-color: var(--mui-palette-primary-main);
-  color: var(--mui-palette-background-default);
+  background-color: var(--color-primary);
+  color: var(--color-background);
   padding: 3rem 2rem 1.5rem;
   animation: ${fadeIn} 0.8s ease-out;
 
@@ -52,11 +52,11 @@ export const FooterLogo = styled.div`
 `;
 
 export const FooterTitle = styled.h3`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--mui-palette-secondary-main);
+  color: var(--color-secondary);
   position: relative;
 
   &:after {
@@ -66,7 +66,7 @@ export const FooterTitle = styled.h3`
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: var(--mui-palette-secondary-main);
+    background-color: var(--color-secondary);
   }
 
   @media (max-width: 768px) {
@@ -117,12 +117,12 @@ export const SocialIcon = styled.a`
   cursor: pointer;
 
   i {
-    color: var(--mui-palette-background-default);
+    color: var(--color-background);
     font-size: 1.2rem;
   }
 
   &:hover {
-    background-color: var(--mui-palette-primary-dark);
+    background-color: var(--color-primary-dark);
     transform: translateY(-3px);
   }
 `;

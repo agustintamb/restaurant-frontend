@@ -1,5 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap");
 
+:root {
+  /* Colores primarios */
+  --color-primary: #6b3e3b;
+  --color-primary-light: #a76d6b;
+  --color-primary-dark: #4b2a2a;
+
+  /* Colores secundarios */
+  --color-secondary: #d7b377;
+  --color-secondary-light: #e9d3a8;
+  --color-secondary-dark: #b99051;
+
+  /* Colores de fondo */
+  --color-background: #fff8e7;
+  --color-paper: #ffffff;
+
+  /* Colores de texto */
+  --color-text-primary: #333333;
+  --color-text-secondary: #655a43;
+
+  /* Tipografía */
+  --font-family-primary: "Lora", serif;
+  --font-family-secondary: "Playfair Display", serif;
+
+  /* Tamaños de fuente */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Pesos de fuente */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espaciados */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Radios de borde */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 9999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +73,10 @@
 }
 
 body {
-  font-family: "Lora", serif;
+  font-family: var(--font-family-primary);
   overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
 }
 
 .app-container {
@@ -43,4 +111,66 @@ body {
   .main-content {
     padding: 0 0.5rem 2rem 0.5rem;
   }
+}
+
+/* Estilos base para headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-secondary);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Botones base */
+button {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-md);
+  text-transform: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+/* Enlaces base */
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--color-primary-light);
 }

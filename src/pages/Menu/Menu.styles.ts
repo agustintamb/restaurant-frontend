@@ -12,10 +12,10 @@ export const MenuContainer = styled.div`
 `;
 
 export const MenuTitle = styled.h1`
-  font-family: "Playfair Display", serif;
+  font-family: --font-family-secondary;
   font-size: 2.8rem;
   font-weight: 700;
-  color: var(--mui-palette-primary-main);
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 0.5rem;
 
@@ -25,10 +25,10 @@ export const MenuTitle = styled.h1`
 `;
 
 export const MenuSubtitle = styled.h2`
-  font-family: "Lora", serif;
+  font-family: --font-family-primary;
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--mui-palette-primary-light);
+  color: var(--color-primary-light);
   text-align: center;
 
   @media (max-width: 768px) {
@@ -65,7 +65,7 @@ export const NoProductsMessage = styled.div`
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-  color: var(--mui-palette-text-secondary);
+  color: var(--color-text-secondary);
   background-color: rgba(215, 179, 119, 0.1);
   border-radius: 12px;
 `;
