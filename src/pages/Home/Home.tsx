@@ -70,10 +70,10 @@ const Home = () => {
 
       <CTASection id="menu-cta">
         <CTAContent>
-          <CTAHeading>Descubre Nuestra Carta</CTAHeading>
+          <CTAHeading>Descubrí Nuestra Carta</CTAHeading>
           <CTAText>
-            Explora nuestra amplia selección de platos tradicionales argentinos,
-            desde las mejores carnes hasta los postres más deliciosos.
+            Explorá nuestra amplia selección de platos tradicionales argentinos,
+            desde las mejores carnes hasta los postres más ricos.
           </CTAText>
           <CTAButtons>
             <Button

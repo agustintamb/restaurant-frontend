@@ -156,6 +156,6 @@ export const FAQSection = styled.section`
   background-color: #fff9f5;
 
   @media (max-width: 768px) {
-    padding: 3rem 0.5rem;
+    padding: 1rem 0.5rem;
   }
 `;
