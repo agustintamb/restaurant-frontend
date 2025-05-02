@@ -4,7 +4,7 @@ import { fadeIn } from "@/utils/animations";
 export const MenuContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 1rem 2rem;
 
   @media (max-width: 768px) {
     padding: 0rem 1.5rem;
