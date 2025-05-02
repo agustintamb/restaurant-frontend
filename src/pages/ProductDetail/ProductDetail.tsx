@@ -93,7 +93,7 @@ const ProductDetail = () => {
 
       <ProductCard>
         <ProductImage>
-          <img src={product.img} alt={product.name} />
+          <img src={`/images/products/${product.img}`} alt={product.name} />
         </ProductImage>
 
         <ProductInfo>

@@ -47,7 +47,7 @@ export const ProductImage = styled.div`
 
   @media (max-width: 992px) {
     width: 100%;
-    height: 300px;
+    height: 260px;
   }
 `;
 
@@ -196,7 +196,7 @@ export const RelatedProductsSection = styled.div`
 
     h3 {
       font-size: 1.4rem;
-      
+
       &:after {
         width: 100%;
       }
