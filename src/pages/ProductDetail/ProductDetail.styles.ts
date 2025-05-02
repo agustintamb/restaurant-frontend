@@ -8,7 +8,7 @@ export const ProductDetailContainer = styled.div`
   animation: ${fadeIn} 0.8s ease-out;
 
   @media (max-width: 768px) {
-    padding: 0rem 1.5rem;
+    padding: 0rem 0.5rem;
   }
 `;
 

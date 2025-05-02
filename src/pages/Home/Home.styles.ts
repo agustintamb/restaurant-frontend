@@ -54,7 +54,7 @@ export const AboutContent = styled.div`
 `;
 
 export const AboutHeading = styled.h3`
-  font-family: --font-family-secondary;
+  font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-primary);
@@ -110,7 +110,7 @@ export const CTAContent = styled.div`
 `;
 
 export const CTAHeading = styled.h2`
-  font-family: --font-family-secondary;
+  font-family: "Playfair Display", serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-background);
@@ -156,6 +156,6 @@ export const FAQSection = styled.section`
   background-color: #fff9f5;
 
   @media (max-width: 768px) {
-    padding: 1rem 0.5rem;
+    padding: 3rem 0.5rem;
   }
 `;
