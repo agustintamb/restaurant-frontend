@@ -1,54 +1,114 @@
-# React + TypeScript + Vite
+# Bodegón Argentino - Documentación
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción General
 
-Currently, two official plugins are available:
+Bodegón Argentino es un sitio web para un restaurante tradicional argentino que ofrece una experiencia digital completa para sus clientes. El sitio actúa como landing page informativa y ademas como plataforma para explorar la carta del restaurante, diseñado con una estética que refleja la calidez y autenticidad de un clásico bodegon argentino.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características Principales
 
-## Expanding the ESLint configuration
+### 1. Página Principal (Home)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Carrusel de Imágenes**: Muestra fotografías atractivas del local y platos destacados
+- **Sección "Nuestra Historia"**: Información sobre el origen y trayectoria del restaurante
+- **Sección CTA**: Dos botones visibles para el usuario de manera que pueda generar una reserva o ir al menu.
+- **Preguntas Frecuentes**: Respuestas a las dudas más comunes de los clientes
+- **Formulario de Contacto**: Permite realizar reservas o consultas directamente desde el sitio
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+### 2. Carta Interactiva
+
+- **Exploración Completa**: Muestra todos los productos disponibles en el restaurante
+- **Filtrado por Categorías**: Permite filtrar platos por entrantes, ensaladas, platos principales, pastas, postres, bebidas, etc.
+- **Subcategorías**: Algunas categorías como "Platos Principales" contienen subcategorías (carnes rojas, carnes blancas, pescados)
+- **Vista Detallada**: Al hacer clic en un producto se accede a una página con información detallada, incluyendo ingredientes, alérgenos y precio
+
+### 3. Sistema de Ruteo
+
+El sitio utiliza un sistema de ruteo que permite:
+
+- Navegar directamente a categorías específicas: `/menu/:categoria`
+- Ver productos específicos con su detalle: `/menu/:categoria/:producto`
+- Navegar entre productos relacionados
+- Mantener coherencia visual y funcional al acceder por URL directa o navegación interna
+
+**Ejemplo**: Acceder a `/menu/platos-principales/bife-de-chorizo` mostrará directamente el detalle del producto "Bife de Chorizo" dentro de su categoría.
+
+## Tecnologías Utilizadas
+
+- **Frontend**: React, TypeScript, Styled Components
+- **Ruteo**: React Router
+- **Estilos**: Variables CSS y Styled Components
+- **Diseño Responsivo**: Adaptado para dispositivos móviles y desktop
+
+## Estructura de Datos
+
+De momento.. el sitio utiliza datos de prueba (mocks) almacenados en archivos JSON con esta estructura:
+
+```json
+{
+  "categories": [
+    {
+      "id": "entrantes",
+      "name": "Entrantes"
     },
-  },
-})
+    // Otras categorías...
+    {
+      "id": "platos-principales",
+      "name": "Platos Principales",
+      "subcategories": [
+        {
+          "id": "carnes-rojas",
+          "name": "Carnes Rojas"
+        }
+        // Otras subcategorías...
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "empanadas-carne",
+      "categoryId": "entrantes",
+      "name": "Empanadas de Carne",
+      "description": "Clásicas empanadas argentinas...",
+      "ingredientes": ["Carne picada", "Cebolla", "..."],
+      "alergenos": ["Gluten", "Huevo"],
+      "precio": 1200,
+      "img": "https://placehold.co/600x400?text=Empanadas+de+Carne"
+    }
+    // Otros productos...
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Integración con Backend (Futuro)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+El sitio está diseñado para conectarse fácilmente a un backend. Cuando el backend esté desarrollado:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+1. La estructura de datos actual permitirá mantener la misma interfaz de usuario
+2. Los archivos JSON mock se reemplazarán por llamadas a API
+3. El sistema de ruteo se mantendrá, permitiendo enlaces directos a productos y categorías
+
+## Instrucciones para levantar el proyecto localmente:
+
+Clonar el repositorio en la carpeta deseada:
+
+```bash
+git clone https://github.com/GonzalezTam/restaurant-frontend.git
+```
+
+Ingresar a la carpeta del proyecto:
+
+```bash
+cd restaurant-frontend
+```
+
+Para instalar las dependencias del proyecto, ejecutar el siguiente comando:
+
+```bash
+npm install
+```
+
+Para correr el proyecto, ejecutar el siguiente comando:
+
+```bash
+npm run dev
 ```
