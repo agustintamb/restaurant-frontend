@@ -43,7 +43,7 @@ const Home = () => {
       <HomeSection id="nosotros">
         <AboutContainer>
           <AboutImage>
-            <img src="src/assets/images/place2.jpg" alt="Nuestro Bodegón" />
+            <img src="/images/place2.jpg" alt="Nuestro Bodegón" />
           </AboutImage>
           <AboutContent>
             <AboutHeading>Nuestra Historia</AboutHeading>

@@ -54,7 +54,7 @@ export const CarouselSlide = styled.div<CarouselSlideProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.imageUrl});
+  background-image: url(${(props) => `/images/${props.imageUrl}`});
   background-size: cover;
   background-position: center;
   display: ${(props) => (props.active ? "flex" : "none")};

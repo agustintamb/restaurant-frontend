@@ -103,7 +103,7 @@ const Header = () => {
   return (
     <HeaderContainer scrolled={scrolled}>
       <Logo onClick={() => scrollToSection("inicio", "/")}>
-        <img src="src/assets/logo.png" alt="Bodegón Argentino" />
+        <img src="/logo.png" alt="Logo" />
       </Logo>
 
       <NavLinks>
