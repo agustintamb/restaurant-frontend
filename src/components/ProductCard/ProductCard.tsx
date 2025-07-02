@@ -31,7 +31,7 @@ const ProductCard = ({
   return (
     <ProductCardContainer onClick={handleClick}>
       <ProductImage $small={small}>
-        <img src={`/images/products/${product.img}`} alt={product.name} />
+        <img src={product.image} alt={product.name} />
       </ProductImage>
       <ProductContent>
         <ProductName $small={small}>{product.name}</ProductName>

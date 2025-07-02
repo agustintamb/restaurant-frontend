@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import productsData from "@/mocks/productsData.json";
-import { IProduct, ICategory } from "@/types";
+import { useMenu } from "@/hooks/useMenu";
 import { formatPrice } from "@/utils/helpers";
 import ProductCardComponent from "@/components/ProductCard/ProductCard";
 import Button from "@/components/UI/Button/Button";
@@ -25,103 +24,188 @@ import {
 } from "./ProductDetail.styles";
 
 const ProductDetail = () => {
+  const navigate = useNavigate();
   const { categoria, producto } = useParams<{
     categoria: string;
     producto: string;
   }>();
-  const navigate = useNavigate();
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [category, setCategory] = useState<ICategory | null>(null);
-  const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
+
+  const {
+    categories,
+    dishes,
+    selectedDish,
+    isLoadingDish,
+    loadDishById,
+    loadDishes,
+    clearCurrentDish,
+    error,
+  } = useMenu();
+
+  // Adaptar el plato seleccionado para compatibilidad
+  const adaptedProduct = useMemo(() => {
+    if (!selectedDish) return null;
+
+    return {
+      ...selectedDish,
+      id: selectedDish._id,
+      categoryId: selectedDish.category._id,
+      subcategoryId: selectedDish.subcategory?._id,
+      ingredientes: selectedDish.ingredients.map((ing) => ing.name),
+      alergenos: selectedDish.allergens.map((all) => all.name),
+      precio: selectedDish.price,
+      img: selectedDish.image,
+    };
+  }, [selectedDish]);
+
+  // Encontrar categoría actual
+  const currentCategory = useMemo(() => {
+    if (!selectedDish) return null;
+
+    const cat = categories.find((c) => c._id === selectedDish.category._id);
+    return cat
+      ? {
+          id: cat._id,
+          name: cat.name,
+        }
+      : null;
+  }, [selectedDish, categories]);
+
+  // Adaptar productos relacionados
+  const relatedProducts = useMemo(() => {
+    if (!selectedDish || dishes.length === 0) return [];
+    return dishes
+      .filter((dish) => dish._id !== selectedDish._id)
+      .slice(0, 4)
+      .map((dish) => ({
+        ...dish,
+        id: dish._id,
+        categoryId: dish.category._id,
+        subcategoryId: dish.subcategory?._id,
+        ingredientes: dish.ingredients.map((ing) => ing.name),
+        alergenos: dish.allergens.map((all) => all.name),
+        precio: dish.price,
+        img: dish.image,
+      }));
+  }, [dishes, selectedDish]);
 
   const handleBackClick = () => {
-    if (category) navigate(`/menu/${category.id}`);
+    if (currentCategory) navigate(`/menu/${currentCategory.id}`);
     else navigate("/menu");
   };
 
-  // Hace scroll al inicio cuando cambia el producto
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const foundProduct = productsData.products.find((p) => p.id === producto);
+    if (producto) loadDishById(producto);
+    return () => {
+      clearCurrentDish();
+    };
+  }, [producto]);
 
-    if (foundProduct) {
-      // Verificar si la categoría en la URL coincide con la categoría del producto
-      if (categoria && foundProduct.categoryId !== categoria) {
-        navigate(`/menu/${foundProduct.categoryId}/${foundProduct.id}`);
+  // Cargar productos relacionados cuando se carga el plato
+  useEffect(() => {
+    if (selectedDish) {
+      if (categoria && selectedDish.category._id !== categoria) {
+        // Verificar si la categoría en la URL coincide
+        navigate(`/menu/${selectedDish.category._id}/${selectedDish._id}`);
         return;
       }
+      loadDishes({
+        categoryId: selectedDish.category._id,
+        limit: "5",
+      });
+    } else if (error) navigate("/menu");
+  }, [selectedDish, categoria, navigate, error]);
 
-      setProduct(foundProduct);
-
-      // Buscar categoría del producto
-      const foundCategory = productsData.categories.find(
-        (c) => c.id === foundProduct.categoryId
-      );
-      if (foundCategory) setCategory(foundCategory);
-
-      // Buscar productos relacionados (misma categoría, excepto el producto actual)
-      const related = productsData.products
-        .filter(
-          (p) =>
-            p.categoryId === foundProduct.categoryId && p.id !== foundProduct.id
-        )
-        .slice(0, 4);
-      setRelatedProducts(related);
-    } else {
-      // Si no se encuentra el producto, redirigir a la página del menú
-      navigate("/menu");
-    }
-
-    // Animación de entrada
+  useEffect(() => {
+    window.scrollTo(0, 0);
     const mainContent = document.querySelector(".main-content");
     if (mainContent) mainContent.classList.add("fade-in");
-
     return () => {
       if (mainContent) mainContent.classList.remove("fade-in");
     };
-  }, [categoria, producto, navigate]);
+  }, [selectedDish]);
 
-  if (!product || !category) return null;
+  if (isLoadingDish) {
+    return (
+      <ProductDetailContainer>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "400px",
+          }}
+        >
+          <div>Cargando producto...</div>
+        </div>
+      </ProductDetailContainer>
+    );
+  }
+
+  if (error || !adaptedProduct) {
+    return (
+      <ProductDetailContainer>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "400px",
+            flexDirection: "column",
+          }}
+        >
+          <div>Error al cargar el producto</div>
+          <Button
+            onClick={() => navigate("/menu")}
+            styles={{ marginTop: "1rem" }}
+          >
+            Volver al menú
+          </Button>
+        </div>
+      </ProductDetailContainer>
+    );
+  }
+
+  if (!currentCategory) return null;
 
   return (
     <ProductDetailContainer>
       <BackButton>
         <Button variant="text" onClick={handleBackClick}>
-          ← Volver a {category.name}
+          ← Volver a {currentCategory.name}
         </Button>
       </BackButton>
 
       <ProductCard>
         <ProductImage>
-          <img src={`/images/products/${product.img}`} alt={product.name} />
+          <img src={adaptedProduct.image} alt={adaptedProduct.name} />
         </ProductImage>
 
         <ProductInfo>
-          <CategoryLabel>{category.name}</CategoryLabel>
-          <ProductName>{product.name}</ProductName>
-          <ProductDescription>{product.description}</ProductDescription>
+          <CategoryLabel>{currentCategory.name}</CategoryLabel>
+          <ProductName>{adaptedProduct.name}</ProductName>
+          <ProductDescription>{adaptedProduct.description}</ProductDescription>
 
           <ProductIngredients>
             <SectionTitle>Ingredientes:</SectionTitle>
             <IngredientsList>
-              {product.ingredientes.map((ingrediente, index) => (
+              {adaptedProduct.ingredientes.map((ingrediente, index) => (
                 <li key={index}>{ingrediente}</li>
               ))}
             </IngredientsList>
           </ProductIngredients>
 
-          {product.alergenos.length > 0 && (
+          {adaptedProduct.alergenos.length > 0 && (
             <ProductAlergenos>
               <SectionTitle>Alérgenos:</SectionTitle>
               <div>
-                {product.alergenos.map((alergeno, index) => (
+                {adaptedProduct.alergenos.map((alergeno, index) => (
                   <AlergenoTag key={index}>{alergeno}</AlergenoTag>
                 ))}
               </div>
             </ProductAlergenos>
           )}
 
-          <ProductPrice>{formatPrice(product.precio)}</ProductPrice>
+          <ProductPrice>{formatPrice(adaptedProduct.precio)}</ProductPrice>
         </ProductInfo>
       </ProductCard>
 

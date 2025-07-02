@@ -10,6 +10,7 @@ const Button = ({
   type = "button",
   disabled = false,
   className,
+  styles = {},
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -20,6 +21,7 @@ const Button = ({
       type={type}
       disabled={disabled}
       className={className}
+      style={styles}
     >
       {children}
     </StyledButton>
