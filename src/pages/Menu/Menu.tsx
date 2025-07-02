@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import productsData from "@/mocks/productsData.json";
-import { ICategory, IProduct } from "@/types";
+import { useMenu } from "@/hooks/useMenu";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import {
@@ -15,59 +14,87 @@ import {
 const Menu = () => {
   const { categoria } = useParams<{ categoria: string }>();
   const location = useLocation();
-  const [categories] = useState<ICategory[]>(productsData.categories);
-  const [products] = useState<IProduct[]>(productsData.products);
-  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const {
+    categories,
+    dishes,
+    isLoadingCategories,
+    isLoadingDishes,
+    error,
+    loadDishes,
+  } = useMenu();
 
   // Buscar subcategoría en la URL si existe
   const searchParams = new URLSearchParams(location.search);
   const subcategoryParam = searchParams.get("subcategory");
 
-  // Encontrar nombre de la categoría actual
+  // Adaptar categorías para el componente CategoryFilter (solo las propiedades necesarias)
+  const adaptedCategories = useMemo(() => {
+    return categories.map((cat) => ({
+      id: cat._id,
+      name: cat.name,
+      subcategories:
+        cat.subcategories?.map((sub) => ({
+          id: sub._id,
+          name: sub.name,
+        })) || [],
+    }));
+  }, [categories]);
+
+  // Encontrar categoría y subcategoría actuales
   const currentCategory = categoria
-    ? categories.find((cat) => cat.id === categoria)
+    ? adaptedCategories.find((cat) => cat.id === categoria)
     : null;
 
-  // Encontrar nombre de subcategoría si existe
   const currentSubcategory =
     subcategoryParam && currentCategory?.subcategories
       ? currentCategory.subcategories.find((sub) => sub.id === subcategoryParam)
       : null;
 
+  // Adaptar dishes para ProductCard
+  const adaptedProducts = useMemo(() => {
+    return dishes.map((dish) => ({
+      ...dish,
+      id: dish._id,
+      categoryId: dish.category._id,
+      subcategoryId: dish.subcategory?._id,
+      ingredientes: dish.ingredients.map((ing) => ing.name),
+      alergenos: dish.allergens.map((all) => all.name),
+      precio: dish.price,
+      img: dish.image,
+    }));
+  }, [dishes]);
+
+  // Cargar platos cuando cambien los filtros
   useEffect(() => {
-    // Scroll hacia arriba al cambiar de categoría
+    const filters: Record<string, string> = {};
+    if (categoria) filters.categoryId = categoria;
+    if (subcategoryParam) filters.subcategoryId = subcategoryParam;
+    loadDishes(filters);
+  }, [categoria, subcategoryParam]);
+
+  // Scroll al cambiar filtros
+  useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Filtrar productos según la categoría y subcategoría
-    let filtered = [...products];
-
-    if (categoria) {
-      // Verificar si la categoría existe
-      const categoryExists = categories.some((cat) => cat.id === categoria);
-
-      if (categoryExists) {
-        filtered = products.filter(
-          (product) => product.categoryId === categoria
-        );
-
-        // Si hay una subcategoría en la URL, filtrar por ella
-        if (subcategoryParam)
-          filtered = filtered.filter(
-            (product) => product.subcategoryId === subcategoryParam
-          );
-      }
-    }
-
-    setFilteredProducts(filtered);
-
-    // Animación de entrada
     const productsGrid = document.querySelector(".products-grid");
     if (productsGrid) productsGrid.classList.add("fade-in");
+  }, [categoria, subcategoryParam]);
 
-    return () => {
-      if (productsGrid) productsGrid.classList.remove("fade-in");
-    };
-  }, [categoria, subcategoryParam, categories, products]);
+  if (isLoadingCategories) {
+    return (
+      <MenuContainer>
+        <MenuTitle>Cargando menú...</MenuTitle>
+      </MenuContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <MenuContainer>
+        <MenuTitle>Error</MenuTitle>
+        <NoProductsMessage>{error}</NoProductsMessage>
+      </MenuContainer>
+    );
+  }
 
   return (
     <MenuContainer>
@@ -81,14 +108,27 @@ const Menu = () => {
       </MenuSubtitle>
 
       <CategoryFilter
-        categories={categories}
+        categories={adaptedCategories}
         selectedCategory={categoria || null}
         selectedSubcategory={subcategoryParam || null}
       />
 
       <ProductsGrid className="products-grid">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
+        {isLoadingDishes ? (
+          // Loading skeleton
+          Array.from({ length: 8 }).map((_, index) => (
+            <div
+              key={index}
+              style={{
+                height: "400px",
+                backgroundColor: "#f5f5f5",
+                borderRadius: "12px",
+                animation: "pulse 2s infinite",
+              }}
+            />
+          ))
+        ) : adaptedProducts.length > 0 ? (
+          adaptedProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

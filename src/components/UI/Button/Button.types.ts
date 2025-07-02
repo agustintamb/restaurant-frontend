@@ -12,4 +12,5 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   className?: string;
+  styles?: React.CSSProperties;
 }
