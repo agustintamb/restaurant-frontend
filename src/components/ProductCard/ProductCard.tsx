@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IProduct } from "@/types";
+import { IDish } from "@/types";
 import { formatPrice } from "@/utils/helpers";
 import {
   ProductCardContainer,
@@ -15,28 +15,25 @@ import {
 } from "./ProductCard.styles";
 
 interface ProductCardProps {
-  product: IProduct;
-  categoryId: string;
+  dish: IDish;
   small?: boolean;
 }
 
-const ProductCard = ({
-  product,
-  categoryId,
-  small = false,
-}: ProductCardProps) => {
+const ProductCard = ({ dish, small = false }: ProductCardProps) => {
   const navigate = useNavigate();
-  const handleClick = () => navigate(`/menu/${categoryId}/${product.id}`);
+
+  const handleClick = () =>
+    navigate(`/menu/${dish.category.nameSlug}/${dish.nameSlug}`);
 
   return (
     <ProductCardContainer onClick={handleClick}>
       <ProductImage $small={small}>
-        <img src={product.image} alt={product.name} />
+        <img src={dish.image} alt={dish.name} />
       </ProductImage>
       <ProductContent>
-        <ProductName $small={small}>{product.name}</ProductName>
+        <ProductName $small={small}>{dish.name}</ProductName>
         <ProductDescription $small={small}>
-          {product.description}
+          {dish.description}
         </ProductDescription>
 
         {!small && (
@@ -44,22 +41,24 @@ const ProductCard = ({
             <ProductIngredients>
               <strong>Ingredientes:</strong>
               <IngredientsList>
-                {product.ingredientes.join(", ")}
+                {dish.ingredients.map((ing) => ing.name).join(", ")}
               </IngredientsList>
             </ProductIngredients>
-            {product.alergenos.length > 0 && (
+            {dish.allergens.length > 0 && (
               <ProductAlergenos>
                 <strong>Alérgenos:</strong>
                 <div>
-                  {product.alergenos.map((alergeno, index) => (
-                    <AlergenoTag key={index}>{alergeno}</AlergenoTag>
+                  {dish.allergens.map((allergen) => (
+                    <AlergenoTag key={allergen._id}>
+                      {allergen.name}
+                    </AlergenoTag>
                   ))}
                 </div>
               </ProductAlergenos>
             )}
           </>
         )}
-        <ProductPrice>{formatPrice(product.precio)}</ProductPrice>
+        <ProductPrice>{formatPrice(dish.price)}</ProductPrice>
       </ProductContent>
     </ProductCardContainer>
   );

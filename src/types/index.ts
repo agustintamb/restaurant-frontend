@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface ICategory {
   _id: string;
   name: string;
+  nameSlug: string;
   subcategories?: ISubcategory[];
   createdAt: string;
   isDeleted: boolean;
@@ -11,6 +12,7 @@ export interface ICategory {
 export interface ISubcategory {
   _id: string;
   name: string;
+  nameSlug: string;
   category: string;
   createdAt: string;
   isDeleted: boolean;
@@ -29,32 +31,24 @@ export interface IAllergen {
 export interface IDish {
   _id: string;
   name: string;
+  nameSlug: string;
   description: string;
   price: number;
   image: string;
   category: {
     _id: string;
     name: string;
+    nameSlug: string;
   };
   subcategory?: {
     _id: string;
     name: string;
+    nameSlug: string;
   };
   ingredients: IIngredient[];
   allergens: IAllergen[];
   createdAt: string;
   isDeleted: boolean;
-}
-
-export interface IProduct extends IDish {
-  // Alias para compatibilidad
-  id: string;
-  categoryId: string;
-  subcategoryId?: string;
-  ingredientes: string[];
-  alergenos: string[];
-  precio: number;
-  img: string;
 }
 
 // Response interfaces

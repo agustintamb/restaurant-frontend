@@ -21,56 +21,30 @@ const Menu = () => {
     isLoadingDishes,
     error,
     loadDishes,
+    findCategoryBySlug,
   } = useMenu();
 
   // Buscar subcategoría en la URL si existe
   const searchParams = new URLSearchParams(location.search);
   const subcategoryParam = searchParams.get("subcategory");
 
-  // Adaptar categorías para el componente CategoryFilter (solo las propiedades necesarias)
-  const adaptedCategories = useMemo(() => {
-    return categories.map((cat) => ({
-      id: cat._id,
-      name: cat.name,
-      subcategories:
-        cat.subcategories?.map((sub) => ({
-          id: sub._id,
-          name: sub.name,
-        })) || [],
-    }));
-  }, [categories]);
+  // Encontrar categoría y subcategoría actuales usando nameSlug
+  const currentCategory = categoria ? findCategoryBySlug(categoria) : null;
 
-  // Encontrar categoría y subcategoría actuales
-  const currentCategory = categoria
-    ? adaptedCategories.find((cat) => cat.id === categoria)
-    : null;
-
-  const currentSubcategory =
-    subcategoryParam && currentCategory?.subcategories
-      ? currentCategory.subcategories.find((sub) => sub.id === subcategoryParam)
-      : null;
-
-  // Adaptar dishes para ProductCard
-  const adaptedProducts = useMemo(() => {
-    return dishes.map((dish) => ({
-      ...dish,
-      id: dish._id,
-      categoryId: dish.category._id,
-      subcategoryId: dish.subcategory?._id,
-      ingredientes: dish.ingredients.map((ing) => ing.name),
-      alergenos: dish.allergens.map((all) => all.name),
-      precio: dish.price,
-      img: dish.image,
-    }));
-  }, [dishes]);
+  const currentSubcategory = useMemo(() => {
+    if (!subcategoryParam || !currentCategory?.subcategories) return null;
+    return currentCategory.subcategories.find(
+      (sub) => sub.nameSlug === subcategoryParam
+    );
+  }, [subcategoryParam, currentCategory]);
 
   // Cargar platos cuando cambien los filtros
   useEffect(() => {
     const filters: Record<string, string> = {};
-    if (categoria) filters.categoryId = categoria;
-    if (subcategoryParam) filters.subcategoryId = subcategoryParam;
+    if (currentCategory) filters.categoryId = currentCategory._id;
+    if (currentSubcategory) filters.subcategoryId = currentSubcategory._id;
     loadDishes(filters);
-  }, [categoria, subcategoryParam]);
+  }, [currentCategory, currentSubcategory]);
 
   // Scroll al cambiar filtros
   useEffect(() => {
@@ -108,7 +82,7 @@ const Menu = () => {
       </MenuSubtitle>
 
       <CategoryFilter
-        categories={adaptedCategories}
+        categories={categories}
         selectedCategory={categoria || null}
         selectedSubcategory={subcategoryParam || null}
       />
@@ -127,14 +101,8 @@ const Menu = () => {
               }}
             />
           ))
-        ) : adaptedProducts.length > 0 ? (
-          adaptedProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              categoryId={product.categoryId}
-            />
-          ))
+        ) : dishes.length > 0 ? (
+          dishes.map((dish) => <ProductCard key={dish._id} dish={dish} />)
         ) : (
           <NoProductsMessage>
             No se encontraron productos en esta categoría.

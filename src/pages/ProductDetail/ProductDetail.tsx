@@ -31,81 +31,49 @@ const ProductDetail = () => {
   }>();
 
   const {
-    categories,
     dishes,
     selectedDish,
     isLoadingDish,
     loadDishById,
     loadDishes,
     clearCurrentDish,
+    findCategoryBySlug,
+    findDishIdBySlug,
     error,
   } = useMenu();
 
-  // Adaptar el plato seleccionado para compatibilidad
-  const adaptedProduct = useMemo(() => {
-    if (!selectedDish) return null;
+  const currentCategory = categoria ? findCategoryBySlug(categoria) : null;
 
-    return {
-      ...selectedDish,
-      id: selectedDish._id,
-      categoryId: selectedDish.category._id,
-      subcategoryId: selectedDish.subcategory?._id,
-      ingredientes: selectedDish.ingredients.map((ing) => ing.name),
-      alergenos: selectedDish.allergens.map((all) => all.name),
-      precio: selectedDish.price,
-      img: selectedDish.image,
-    };
-  }, [selectedDish]);
-
-  // Encontrar categoría actual
-  const currentCategory = useMemo(() => {
-    if (!selectedDish) return null;
-
-    const cat = categories.find((c) => c._id === selectedDish.category._id);
-    return cat
-      ? {
-          id: cat._id,
-          name: cat.name,
-        }
-      : null;
-  }, [selectedDish, categories]);
-
-  // Adaptar productos relacionados
+  // Productos relacionados (misma categoría, excluyendo el actual)
   const relatedProducts = useMemo(() => {
     if (!selectedDish || dishes.length === 0) return [];
-    return dishes
-      .filter((dish) => dish._id !== selectedDish._id)
-      .slice(0, 4)
-      .map((dish) => ({
-        ...dish,
-        id: dish._id,
-        categoryId: dish.category._id,
-        subcategoryId: dish.subcategory?._id,
-        ingredientes: dish.ingredients.map((ing) => ing.name),
-        alergenos: dish.allergens.map((all) => all.name),
-        precio: dish.price,
-        img: dish.image,
-      }));
+    return dishes.filter((dish) => dish._id !== selectedDish._id).slice(0, 4);
   }, [dishes, selectedDish]);
 
   const handleBackClick = () => {
-    if (currentCategory) navigate(`/menu/${currentCategory.id}`);
+    if (currentCategory) navigate(`/menu/${currentCategory.nameSlug}`);
     else navigate("/menu");
   };
 
   useEffect(() => {
-    if (producto) loadDishById(producto);
+    if (producto && dishes.length > 0) {
+      const dishId = findDishIdBySlug(producto);
+      if (dishId) loadDishById(dishId);
+      else navigate("/menu");
+    }
     return () => {
       clearCurrentDish();
     };
-  }, [producto]);
+  }, [producto, dishes.length, navigate]);
 
   // Cargar productos relacionados cuando se carga el plato
   useEffect(() => {
     if (selectedDish) {
-      if (categoria && selectedDish.category._id !== categoria) {
+      if (categoria && selectedDish.category.nameSlug !== categoria) {
         // Verificar si la categoría en la URL coincide
-        navigate(`/menu/${selectedDish.category._id}/${selectedDish._id}`);
+        navigate(
+          `/menu/${selectedDish.category.nameSlug}/${selectedDish.nameSlug}`
+        );
         return;
       }
       loadDishes({
@@ -141,7 +109,7 @@ const ProductDetail = () => {
     );
   }
 
-  if (error || !adaptedProduct) {
+  if (error || !selectedDish) {
     return (
       <ProductDetailContainer>
         <div
@@ -165,47 +133,50 @@ const ProductDetail = () => {
     );
   }
 
-  if (!currentCategory) return null;
+  const categoryToShow = currentCategory || {
+    name: selectedDish.category.name,
+    nameSlug: selectedDish.category.nameSlug,
+  };
 
   return (
     <ProductDetailContainer>
       <BackButton>
         <Button variant="text" onClick={handleBackClick}>
-          ← Volver a {currentCategory.name}
+          ← Volver a {categoryToShow.name}
         </Button>
       </BackButton>
 
       <ProductCard>
         <ProductImage>
-          <img src={adaptedProduct.image} alt={adaptedProduct.name} />
+          <img src={selectedDish.image} alt={selectedDish.name} />
         </ProductImage>
 
         <ProductInfo>
-          <CategoryLabel>{currentCategory.name}</CategoryLabel>
-          <ProductName>{adaptedProduct.name}</ProductName>
-          <ProductDescription>{adaptedProduct.description}</ProductDescription>
+          <CategoryLabel>{categoryToShow.name}</CategoryLabel>
+          <ProductName>{selectedDish.name}</ProductName>
+          <ProductDescription>{selectedDish.description}</ProductDescription>
 
           <ProductIngredients>
             <SectionTitle>Ingredientes:</SectionTitle>
             <IngredientsList>
-              {adaptedProduct.ingredientes.map((ingrediente, index) => (
-                <li key={index}>{ingrediente}</li>
+              {selectedDish.ingredients.map((ingredient) => (
+                <li key={ingredient._id}>{ingredient.name}</li>
               ))}
             </IngredientsList>
           </ProductIngredients>
 
-          {adaptedProduct.alergenos.length > 0 && (
+          {selectedDish.allergens.length > 0 && (
             <ProductAlergenos>
               <SectionTitle>Alérgenos:</SectionTitle>
               <div>
-                {adaptedProduct.alergenos.map((alergeno, index) => (
-                  <AlergenoTag key={index}>{alergeno}</AlergenoTag>
+                {selectedDish.allergens.map((allergen) => (
+                  <AlergenoTag key={allergen._id}>{allergen.name}</AlergenoTag>
                 ))}
               </div>
             </ProductAlergenos>
           )}
 
-          <ProductPrice>{formatPrice(adaptedProduct.precio)}</ProductPrice>
+          <ProductPrice>{formatPrice(selectedDish.price)}</ProductPrice>
         </ProductInfo>
       </ProductCard>
 
@@ -213,11 +184,10 @@ const ProductDetail = () => {
         <RelatedProductsSection>
           <h3>También te puede interesar</h3>
           <RelatedProductsGrid>
-            {relatedProducts.map((relatedProduct) => (
+            {relatedProducts.map((relatedDish) => (
               <ProductCardComponent
-                key={relatedProduct.id}
-                product={relatedProduct}
-                categoryId={relatedProduct.categoryId}
+                key={relatedDish._id}
+                dish={relatedDish}
                 small
               />
             ))}
