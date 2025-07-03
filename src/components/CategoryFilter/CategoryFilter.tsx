@@ -33,7 +33,7 @@ const CategoryFilter = ({
   const mobileFilterButtonRef = useRef<HTMLButtonElement>(null);
 
   const selectedCategoryObj = categories.find(
-    (cat) => cat.id === selectedCategory
+    (cat) => cat.nameSlug === selectedCategory
   );
 
   // Uso del hook useOutsideClick
@@ -42,38 +42,41 @@ const CategoryFilter = ({
     () => {
       if (mobileFilterOpen) setMobileFilterOpen(false);
     },
-    [mobileFilterButtonRef] // Excluimos el botón para que el clic en él no cierre el filtro
+    [mobileFilterButtonRef]
   );
 
-  const handleCategorySelect = (categoryId: string) => {
-    const selectedCat = categories.find((cat) => cat.id === categoryId);
+  const handleCategorySelect = (categorySlug: string) => {
+    const selectedCat = categories.find((cat) => cat.nameSlug === categorySlug);
     const hasSubcategories =
       selectedCat?.subcategories && selectedCat.subcategories.length > 0;
 
-    if (categoryId === selectedCategory) {
+    if (categorySlug === selectedCategory) {
       navigate("/menu");
       // Solo cerramos si no tiene subcategorías o ya estaba seleccionada
       if (!hasSubcategories) setMobileFilterOpen(false);
     } else {
-      navigate(`/menu/${categoryId}`);
+      navigate(`/menu/${categorySlug}`);
       if (!hasSubcategories) setMobileFilterOpen(false);
     }
   };
 
-  const handleSubcategorySelect = (subcategoryId: string) => {
+  const handleSubcategorySelect = (subcategorySlug: string) => {
     const categoryWithSub = categories.find((cat) =>
-      cat.subcategories?.some((sub) => sub.id === subcategoryId)
+      cat.subcategories?.some((sub) => sub.nameSlug === subcategorySlug)
     );
 
     if (categoryWithSub) {
-      if (subcategoryId === selectedSubcategory)
-        navigate(`/menu/${categoryWithSub.id}`);
-      else navigate(`/menu/${categoryWithSub.id}?subcategory=${subcategoryId}`);
+      if (subcategorySlug === selectedSubcategory)
+        navigate(`/menu/${categoryWithSub.nameSlug}`);
+      else
+        navigate(
+          `/menu/${categoryWithSub.nameSlug}?subcategory=${subcategorySlug}`
+        );
     }
 
     // Cierra el filtro después de seleccionar una subcategoría
     setMobileFilterOpen(false);
-  }
+  };
 
   const toggleMobileFilter = () => setMobileFilterOpen(!mobileFilterOpen);
 
@@ -91,9 +94,9 @@ const CategoryFilter = ({
 
           {categories.map((category) => (
             <CategoryChip
-              key={category.id}
-              selected={selectedCategory === category.id}
-              onClick={() => handleCategorySelect(category.id)}
+              key={category._id}
+              selected={selectedCategory === category.nameSlug}
+              onClick={() => handleCategorySelect(category.nameSlug)}
             >
               {category.name}
             </CategoryChip>
@@ -105,9 +108,9 @@ const CategoryFilter = ({
             <SubcategoryChips>
               {selectedCategoryObj.subcategories.map((subcategory) => (
                 <CategoryChip
-                  key={subcategory.id}
-                  selected={selectedSubcategory === subcategory.id}
-                  onClick={() => handleSubcategorySelect(subcategory.id)}
+                  key={subcategory._id}
+                  selected={selectedSubcategory === subcategory.nameSlug}
+                  onClick={() => handleSubcategorySelect(subcategory.nameSlug)}
                   isSubcategory
                 >
                   {subcategory.name}
@@ -140,9 +143,9 @@ const CategoryFilter = ({
 
             {categories.map((category) => (
               <CategoryChip
-                key={category.id}
-                selected={selectedCategory === category.id}
-                onClick={() => handleCategorySelect(category.id)}
+                key={category._id}
+                selected={selectedCategory === category.nameSlug}
+                onClick={() => handleCategorySelect(category.nameSlug)}
               >
                 {category.name}
               </CategoryChip>
@@ -156,9 +159,11 @@ const CategoryFilter = ({
                 <SubcategoryChips>
                   {selectedCategoryObj.subcategories.map((subcategory) => (
                     <CategoryChip
-                      key={subcategory.id}
-                      selected={selectedSubcategory === subcategory.id}
-                      onClick={() => handleSubcategorySelect(subcategory.id)}
+                      key={subcategory._id}
+                      selected={selectedSubcategory === subcategory.nameSlug}
+                      onClick={() =>
+                        handleSubcategorySelect(subcategory.nameSlug)
+                      }
                       isSubcategory
                     >
                       {subcategory.name}

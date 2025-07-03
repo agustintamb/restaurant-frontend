@@ -35,10 +35,24 @@ export const useMenu = () => {
         ...filters,
       })
     );
+
   const loadDishById = (dishId: string) => dispatch(getDishById(dishId));
   const clearMenuError = () => dispatch(clearError());
   const clearCurrentDish = () => dispatch(clearSelectedDish());
   const clearMenuDishes = () => dispatch(clearDishes());
+
+  // Helper functions para encontrar categorías y platos por slug
+  const findCategoryBySlug = (slug: string) =>
+    categories.find((cat) => cat.nameSlug === slug);
+
+  const findDishBySlug = (slug: string) =>
+    dishes.find((dish) => dish.nameSlug === slug);
+
+  // Función para encontrar ID de plato por slug
+  const findDishIdBySlug = (slug: string) => {
+    const dish = dishes.find((dish) => dish.nameSlug === slug);
+    return dish?._id;
+  };
 
   useEffect(() => {
     if (categories.length === 0)
@@ -61,6 +75,9 @@ export const useMenu = () => {
     error,
     loadDishes,
     loadDishById,
+    findCategoryBySlug,
+    findDishBySlug,
+    findDishIdBySlug,
     clearMenuError,
     clearCurrentDish,
     clearMenuDishes,
