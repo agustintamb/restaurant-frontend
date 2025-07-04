@@ -110,3 +110,24 @@ export interface IAccordionItem {
   title: ReactNode;
   content: ReactNode;
 }
+export interface IContactForm {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+export interface IContactResponse {
+  message: string;
+  result: {
+    _id: string;
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    isRead: boolean;
+    isDeleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
