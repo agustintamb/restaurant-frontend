@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useContactForm } from "./useContactForm";
 import Button from "@/components/UI/Button/Button";
 import {
   FormContainer,
@@ -14,58 +14,15 @@ import {
 } from "./ContactForm.styles";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const [formStatus, setFormStatus] = useState<{
-    submitted: boolean;
-    success: boolean;
-    message: string;
-  }>({
-    submitted: false,
-    success: false,
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: true,
-        success: false,
-        message: "Por favor completa todos los campos requeridos.",
-      });
-      return;
-    }
-
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: "¡Gracias por tu mensaje! Te contactaremos pronto.",
-    });
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-  };
+  const {
+    formData,
+    isLoading,
+    success,
+    error,
+    message,
+    handleChange,
+    handleSubmit,
+  } = useContactForm();
 
   return (
     <FormContainer id="contact-form">
@@ -75,12 +32,8 @@ const ContactForm = () => {
         Escribinos y te responderemos a la brevedad.
       </FormSubtitle>
 
-      {formStatus.submitted &&
-        (formStatus.success ? (
-          <FormSuccess>{formStatus.message}</FormSuccess>
-        ) : (
-          <FormError>{formStatus.message}</FormError>
-        ))}
+      {success && message && <FormSuccess>{message}</FormSuccess>}
+      {error && <FormError>{error}</FormError>}
 
       <form onSubmit={handleSubmit}>
         <FormGroup>
@@ -93,6 +46,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Tu nombre"
             required
+            disabled={isLoading}
           />
         </FormGroup>
 
@@ -106,6 +60,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Tu correo electrónico"
             required
+            disabled={isLoading}
           />
         </FormGroup>
 
@@ -119,6 +74,7 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="Tu número de teléfono"
+            disabled={isLoading}
           />
         </FormGroup>
 
@@ -132,12 +88,18 @@ const ContactForm = () => {
             placeholder="Dejanos tu mensaje"
             rows={5}
             required
+            disabled={isLoading}
           />
         </FormGroup>
 
         <SubmitButton>
-          <Button type="submit" variant="primary" fullWidth>
-            Enviar Mensaje
+          <Button
+            type="submit"
+            variant="primary"
+            fullWidth
+            disabled={isLoading}
+          >
+            {isLoading ? "Enviando..." : "Enviar Mensaje"}
           </Button>
         </SubmitButton>
       </form>

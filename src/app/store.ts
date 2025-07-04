@@ -1,9 +1,11 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import menu from "@/features/menu";
+import contact from "@/features/contact";
 
 export const reducer = combineReducers({
   menu,
+  contact,
 });
 
 const store = configureStore({
