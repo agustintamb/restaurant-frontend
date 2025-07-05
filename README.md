@@ -96,7 +96,7 @@ El frontend requiere un backend REST API con los siguientes endpoints:
 Clonar el repositorio en la carpeta deseada:
 
 ```bash
-git clone https://github.com/GonzalezTam/restaurant-frontend.git
+git clone https://github.com/agustintamb/restaurant-frontend.git
 ```
 
 Ingresar a la carpeta del proyecto:
