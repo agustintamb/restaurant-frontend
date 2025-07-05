@@ -17,8 +17,8 @@ Bodegón Argentino es un sitio web para un restaurante tradicional argentino que
 ### 2. Carta Interactiva
 
 - **Exploración Completa**: Muestra todos los productos disponibles en el restaurante
-- **Filtrado por Categorías**: Permite filtrar platos por entrantes, ensaladas, platos principales, pastas, postres, bebidas, etc.
-- **Subcategorías**: Algunas categorías como "Platos Principales" contienen subcategorías (carnes rojas, carnes blancas, pescados)
+- **Filtrado por Categorías**: Permite filtrar platos por la categoria a la que pertenece.
+- **Subcategorías**: Algunas categorías como "Platos Principales" podrian contienen subcategorías (carnes rojas, carnes blancas, pescados)
 - **Vista Detallada**: Al hacer clic en un producto se accede a una página con información detallada, incluyendo ingredientes, alérgenos y precio
 
 ### 3. Sistema de Ruteo
@@ -30,62 +30,66 @@ El sitio utiliza un sistema de ruteo que permite:
 - Navegar entre productos relacionados
 - Mantener coherencia visual y funcional al acceder por URL directa o navegación interna
 
-**Ejemplo**: Acceder a `/menu/platos-principales/bife-de-chorizo` mostrará directamente el detalle del producto "Bife de Chorizo" dentro de su categoría.
+**Ejemplo**: Acceder a `/menu/platos_principales/bife_de_chorizo` mostrará directamente el detalle del producto "Bife de Chorizo" dentro de su categoría.
 
 ## Tecnologías Utilizadas
 
 - **Frontend**: React, TypeScript, Styled Components
+- **Estado Global**: Redux Toolkit
+- **Peticiones HTTP**: Axios
 - **Ruteo**: React Router
 - **Estilos**: Variables CSS y Styled Components
 - **Diseño Responsivo**: Adaptado para dispositivos móviles y desktop
 
-## Estructura de Datos
+## Arquitectura y Backend
 
-De momento.. el sitio utiliza datos de prueba (mocks) almacenados en archivos JSON con esta estructura:
+El sitio está completamente integrado con un backend REST API que maneja:
 
-```json
-{
-  "categories": [
-    {
-      "id": "entrantes",
-      "name": "Entrantes"
-    },
-    // Otras categorías...
-    {
-      "id": "platos-principales",
-      "name": "Platos Principales",
-      "subcategories": [
-        {
-          "id": "carnes-rojas",
-          "name": "Carnes Rojas"
-        }
-        // Otras subcategorías...
-      ]
-    }
-  ],
-  "products": [
-    {
-      "id": "empanadas-carne",
-      "categoryId": "entrantes",
-      "name": "Empanadas de Carne",
-      "description": "Clásicas empanadas argentinas...",
-      "ingredientes": ["Carne picada", "Cebolla", "..."],
-      "alergenos": ["Gluten", "Huevo"],
-      "precio": 1200,
-      "img": "https://placehold.co/600x400?text=Empanadas+de+Carne"
-    }
-    // Otros productos...
-  ]
-}
+### Gestión de Estado
+
+- **Redux Toolkit** para el manejo centralizado del estado
+- **Async Thunks** para operaciones asíncronas
+
+### Servicios API
+
+El frontend se comunica con el backend a través de servicios especializados:
+
+- **ServiceBase**: Clase base con configuración de Axios e interceptores
+- **MenuService**: Gestiona categorías, subcategorías y platos
+- **ContactService**: Maneja formularios de contacto
+
+## Estructura del Proyecto
+
+```
+src/
+├── app/           # Configuración de Redux store
+├── components/    # Componentes reutilizables
+├── features/      # Slices de Redux por feature
+├── hooks/         # Hooks personalizados
+├── pages/         # Páginas principales de la aplicación
+├── service/       # Servicios para comunicación con API
+├── types/         # Definiciones de tipos TypeScript
+└── utils/         # Utilidades y constantes
 ```
 
-## Integración con Backend (Futuro)
+## Configuración del Entorno
 
-El sitio está diseñado para conectarse fácilmente a un backend. Cuando el backend esté desarrollado:
+### Variables de Entorno
 
-1. La estructura de datos actual permitirá mantener la misma interfaz de usuario
-2. Los archivos JSON mock se reemplazarán por llamadas a API
-3. El sistema de ruteo se mantendrá, permitiendo enlaces directos a productos y categorías
+Crear un archivo `.env.development` basado en `.env.example`:
+
+```bash
+VITE_API_URL=http://localhost:8000/api  # URL del backend
+VITE_BASE_URL=http://localhost:5173     # URL del frontend
+```
+
+### Backend Requerido
+
+El frontend requiere un backend REST API con los siguientes endpoints:
+
+- Categorías y subcategorías
+- Platos con ingredientes y alérgenos
+- Sistema de contacto
 
 ## Instrucciones para levantar el proyecto localmente:
 
